@@ -50,9 +50,7 @@
 		<tstamp/>
 		<copy file="sim-cache.c" todir="${simplesim.dir}" />
 		<delete file="${simplesim.dir}/sim-cache" />
-		<exec executable="make" dir="${simplesim.dir}">
-			<arg value="Makefile" />
-		</exec>
+		<exec executable="make" dir="${simplesim.dir}" />
 		<copy file="${simplesim.dir}/sim-cache" todir="build" failonerror="false"/>
 	</target>
 
