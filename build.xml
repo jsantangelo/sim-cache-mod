@@ -1,0 +1,63 @@
+<project name="sim-cache-mod" default="cleanup" basedir=".">
+	<description>
+		This is an ant build file to build/deploy sim-cache-mod.
+	</description>
+
+	<target name="config">
+		<input message="Enter entire path to the simplesim directory:"
+			addproperty="simplesimdir.tofile"
+		/>
+		<propertyfile file="build.properties">
+			<entry key="simplesim.dir" value="${simplesimdir.tofile}" />
+		</propertyfile>
+	</target>
+
+	<target name="get-simplesim-dir">
+		<loadproperties srcFile="build.properties">
+			<filterchain>
+				<linecontains>
+					<contains value="simplesim.dir" />
+				</linecontains>
+			</filterchain>
+		</loadproperties>
+		<fail message="Run 'ant config', then rerun 'ant'.">
+			<condition>
+				<not>
+					<isset property="simplesim.dir" />
+				</not>
+			</condition>
+		</fail>
+	</target>
+
+	<target name="init" depends="get-simplesim-dir">
+		<tstamp/>
+		<mkdir dir="build" />
+		<echo message="Your simplesim directory is: ${simplesim.dir}" />
+		<input message="If this is correct, y to continue (n to exit): "
+			validargs="y,n"
+			addproperty="do.continue" />
+		<condition property="do.quit">
+			<equals arg1="n" arg2="${do.continue}" />
+		</condition>
+		<fail if="do.quit">Build aborted.</fail>
+	</target>
+
+	<target name="backup" depends="init">
+		<move file="${simplesim.dir}/sim-cache.c" tofile="${simplesim.dir}/sim-cache.c.orig"/>
+	</target>
+
+	<target name="build" depends="backup">
+		<tstamp/>
+		<copy file="sim-cache.c" todir="${simplesim.dir}" />
+		<delete file="${simplesim.dir}/sim-cache" />
+		<exec executable="make" dir="${simplesim.dir}">
+			<arg value="Makefile" />
+		</exec>
+		<copy file="${simplesim.dir}/sim-cache" todir="build" failonerror="false"/>
+	</target>
+
+	<target name="cleanup" depends="build">
+		<delete file="${simplesim.dir}/sim-cache.c" />
+		<move file="${simplesim.dir}/sim-cache.c.orig" tofile="${simplesim.dir}/sim-cache.c" />
+	</target>
+</project>
