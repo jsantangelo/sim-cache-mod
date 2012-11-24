@@ -413,7 +413,7 @@ sim_check_options(struct opt_odb_t *odb,        /* options database */
       if (sscanf(cache_dl1_opt, "%[^:]:%d:%d:%d:%c",
                  name, &nsets, &bsize, &assoc, &c) != 5)
         fatal("bad l1 D-cache parms: <name>:<nsets>:<bsize>:<assoc>:<repl>");
-        cache_dl1 = cache_create(name, nsets, bsize, /* balloc */FALSE,
+      cache_dl1 = cache_create(name, nsets, bsize, /* balloc */FALSE,
                                /* usize */0, assoc, cache_char2policy(c),
                                dl1_access_fn, /* hit latency */1);
 
@@ -433,7 +433,7 @@ sim_check_options(struct opt_odb_t *odb,        /* options database */
                      name, &nsets, &bsize, &assoc, &c) != 5)
             fatal("bad l2 D-cache parms: "
                   "<name>:<nsets>:<bsize>:<assoc>:<repl>");
-            cache_dl2 = cache_create(name, nsets, bsize, /* balloc */FALSE,
+          cache_dl2 = cache_create(name, nsets, bsize, /* balloc */FALSE,
                                    /* usize */0, assoc, cache_char2policy(c),
                                    dl2_access_fn, /* hit latency */1);
           
@@ -446,7 +446,7 @@ sim_check_options(struct opt_odb_t *odb,        /* options database */
                          name, &nsets, &bsize, &assoc, &c) != 5)
                 fatal("bad l3 D-cache parms: "
                       "<name>:<nsets>:<bsize>:<assoc>:<repl>");
-                cache_dl3 = cache_create(name, nsets, bsize, /* balloc */FALSE,
+              cache_dl3 = cache_create(name, nsets, bsize, /* balloc */FALSE,
                                        /* usize */0, assoc, cache_char2policy(c),
                                        dl3_access_fn, /* hit latency */1);
             }
@@ -511,7 +511,7 @@ sim_check_options(struct opt_odb_t *odb,        /* options database */
       if (sscanf(cache_il1_opt, "%[^:]:%d:%d:%d:%c",
                  name, &nsets, &bsize, &assoc, &c) != 5)
         fatal("bad l1 I-cache parms: <name>:<nsets>:<bsize>:<assoc>:<repl>");
-        cache_il1 = cache_create(name, nsets, bsize, /* balloc */FALSE,
+      cache_il1 = cache_create(name, nsets, bsize, /* balloc */FALSE,
                                /* usize */0, assoc, cache_char2policy(c),
                                il1_access_fn, /* hit latency */1);
 
@@ -548,23 +548,23 @@ sim_check_options(struct opt_odb_t *odb,        /* options database */
                      name, &nsets, &bsize, &assoc, &c) != 5)
             fatal("bad l2 I-cache parms: "
                   "<name>:<nsets>:<bsize>:<assoc>:<repl>");
-            cache_il2 = cache_create(name, nsets, bsize, /* balloc */FALSE,
+          cache_il2 = cache_create(name, nsets, bsize, /* balloc */FALSE,
                                    /* usize */0, assoc, cache_char2policy(c),
                                    il2_access_fn, /* hit latency */1);
 
-            /* is the level 3 I-cache defined? */
-            if (!mystricmp(cache_il3_opt, "none"))
-              cache_il3 = NULL;
-            else
-              {
-                if (sscanf(cache_il3_opt, "%[^:]:%d:%d:%d:%c",
+          /* is the level 3 I-cache defined? */
+          if (!mystricmp(cache_il3_opt, "none"))
+            cache_il3 = NULL;
+          else
+            {
+              if (sscanf(cache_il3_opt, "%[^:]:%d:%d:%d:%c",
                          name, &nsets, &bsize, &assoc, &c) != 5)
-                  fatal("bad l3 I-cache parms: "
+                fatal("bad l3 I-cache parms: "
                       "<name>:<nsets>:<bsize>:<assoc>:<repl>");
-                  cache_il3 = cache_create(name, nsets, bsize, /* balloc */FALSE,
+              cache_il3 = cache_create(name, nsets, bsize, /* balloc */FALSE,
                                        /* usize */0, assoc, cache_char2policy(c),
                                        il3_access_fn, /* hit latency */1);
-              }
+            }
         }
     }
 
