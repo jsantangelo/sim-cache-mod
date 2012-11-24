@@ -555,6 +555,12 @@ sim_check_options(struct opt_odb_t *odb,        /* options database */
           /* is the level 3 I-cache defined? */
           if (!mystricmp(cache_il3_opt, "none"))
             cache_il3 = NULL;
+          else if (!mystricmp(cache_il3_opt, "dl3"))
+            {
+              if (!cache_dl3)
+                 fatal("I-cache l3 cannot access D-cache l3 as it's undefined");
+              cache_il3 = cache_dl3;
+            }
           else
             {
               if (sscanf(cache_il3_opt, "%[^:]:%d:%d:%d:%c",
