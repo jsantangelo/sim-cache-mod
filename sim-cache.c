@@ -237,6 +237,7 @@ il2_access_fn(enum mem_cmd cmd,         /* access cmd, Read or Write */
   // LVL3 Modified (END)
 }
 
+// LVL3 Added (BEGIN): Level 3 instruction-cache handler function.
 /* l3 inst cache block miss handler function */
 static unsigned int                     /* latency of block access */
 il3_access_fn(enum mem_cmd cmd,         /* access cmd, Read or Write */
@@ -249,6 +250,7 @@ il3_access_fn(enum mem_cmd cmd,         /* access cmd, Read or Write */
      always done in the main simulator loop */
   return /* access latency, ignored */1;
 }
+// LVL3 Added (END)
 
 /* inst cache block miss handler function */
 static unsigned int                     /* latency of block access */
