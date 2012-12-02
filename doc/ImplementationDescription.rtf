@@ -1,0 +1,13 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1187\cocoasubrtf340
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;}
+{\colortbl;\red255\green255\blue255;}
+\margl1440\margr1440\vieww12600\viewh7800\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural
+
+\f0\fs24 \cf0 Mike Testen\
+James Sant'Angelo\
+Final Project - Implementation Description of L3 cache addition to Simplescalar\
+\
+To add L3 cache support to simplescalar, it is necessary to add additional cache structures (appropriately named for cache level 3, for both data and instruction). These structures, along with newly added handler functions, are used for cache redirection during miss handling. The level 3 cache needs to be added as part of the if-else control structure when determine when/where to redirect misses. Level 2 cache logic needs to be slightly reworked, since it will not automatically go to main memory if it misses now (it will check level 3 cache instead).\
+\
+The input options were modified to give a user access to level 3 cache configuration, and finally, the stats database was modified so that level 3 statistics are tracked and reported, just as level 1 and level 3 caches are.}
