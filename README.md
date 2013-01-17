@@ -29,6 +29,6 @@ To build, run:
 Output
 ------
 
-When you have built successfully, a new `sim-cache` executable will be placed within the `build` directory. Your original simplesim distribution
-should be unmodified.
-
+When you have built successfully, a new `sim-cache` executable will be placed
+within the `build` directory. Your original simplesim distribution should be
+unmodified.
